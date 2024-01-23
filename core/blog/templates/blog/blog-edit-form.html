@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} blog-edit-form {% endblock %}
+
+{%block content%}
+
+    <h3>Edit the blog</h3>
+    <form method="post">{% csrf_token %}
+      {{ form.as_p }}
+    <input  class="btn btn-success"  type="submit" value="Save">
+    </form>
+
+
+{%endblock%}
+

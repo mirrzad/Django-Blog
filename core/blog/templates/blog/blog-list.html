@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} blog-list {% endblock %}
+
+{%block content%}
+
+    <h2>Welcome to Django Blog!</h2>
+    <br>
+    <a href="{% url 'blog-create' %}"><button class="btn btn-primary">Add Blog</button></a>
+    <br>
+    {% for blog in blogs %}
+    <br>
+    <h3><a href="{% url 'blog-detail' blog.id %}">{{blog.title}}</a></h3>
+
+    <small>author:&nbsp; {{blog.author.username}} &nbsp;&nbsp;&nbsp; category:&nbsp; {{blog.category.title}} </small>
+    <br>
+    <small>created_at:&nbsp;&nbsp;{{blog.created_date}}</small>
+    <br>
+
+    {% endfor %}
+
+{%endblock%}

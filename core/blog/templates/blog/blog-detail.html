@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title%} {{blog.title}} {% endblock %}
+
+{%block content%}
+
+<h3>{{blog.title}}</h3>
+<br>
+<br>
+    <a href="{% url 'blog-edit' blog.id %}"><button class="btn btn-primary">Edit Blog</button></a>
+<br>
+<br>
+    <a href="{% url 'blog-delete' blog.id %}"><button class="btn btn-danger">Delete Blog</button></a>
+<br>
+<br>
+<small>author: &nbsp&nbsp{{blog.author.username}} &nbsp&nbsp&nbsp created_at:&nbsp&nbsp{{blog.created_date}}</small>
+<br>
+<br>
+
+<p>
+  {{blog.content}}
+</p>
+
+{%endblock%}
