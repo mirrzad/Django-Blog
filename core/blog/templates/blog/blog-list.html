@@ -3,9 +3,22 @@
 {% block title%} blog-list {% endblock %}
 
 {%block content%}
-
+    <div style="float: right; ">
+        <a href="{% url 'logout-page' %}"><button class="btn btn-danger" >Logout</button></a>
+    </div>
     <h2>Welcome to Django Blog!</h2>
+
     <br>
+    <br>
+    <br>
+
+    <div style="float: right; width: 20%">
+        <h4>Category</h4>
+        <p><a href="{% url 'blog-list' %}"> All </a></p>
+        {% for cat in categories%}
+            <p><a href="{% url 'blog-list-category-filter' cat.id %}"> {{cat.title}} </a></p>
+        {%endfor%}
+    </div>
     <a href="{% url 'blog-create' %}"><button class="btn btn-primary">Add Blog</button></a>
     <br>
     {% for blog in blogs %}

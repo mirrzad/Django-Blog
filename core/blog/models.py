@@ -22,6 +22,9 @@ class Blog(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    def snippet(self):
+        return self.content[:10]
+
     def __str__(self):
         return self.title
 

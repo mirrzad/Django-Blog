@@ -3,15 +3,21 @@
 {% block title%} {{blog.title}} {% endblock %}
 
 {%block content%}
-
+<div style="float: right;">
+        <a href="{% url 'blog-list' %}"><button class="btn btn-success" >Home</button></a>
+    </div>
 <h3>{{blog.title}}</h3>
+{% if blog.author.id == request.user.id%}
+    <div>
 <br>
-<br>
+<p>
     <a href="{% url 'blog-edit' blog.id %}"><button class="btn btn-primary">Edit Blog</button></a>
-<br>
-<br>
+</p>
+<p>
     <a href="{% url 'blog-delete' blog.id %}"><button class="btn btn-danger">Delete Blog</button></a>
-<br>
+</p>
+</div>
+{%endif%}
 <br>
 <small>author: &nbsp&nbsp{{blog.author.username}} &nbsp&nbsp&nbsp created_at:&nbsp&nbsp{{blog.created_date}}</small>
 <br>
@@ -20,5 +26,24 @@
 <p>
   {{blog.content}}
 </p>
+<br>
+<br>
+<h3>Comments:</h3>
+<br>
+
+<div>
+    <p>
+        {% for comment in blog.comments.all%}
+            <br>
+            <small>subject:&nbsp{{comment.subject}}</small>
+            <br>
+            <small>{{comment.content}}</small>
+            <br>
+        {%endfor%}
+    </p>
+</div>
+<a href="{% url 'comment-create' blog.pk %}"><button class="btn btn-primary" >Leave comment</button></a>
+<br>
+<br>
 
 {%endblock%}
