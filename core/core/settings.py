@@ -152,3 +152,4 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'A simple blog application with API service',
 }
 
+CELERY_BROKER_URL = 'redis://redis:6379/1'
