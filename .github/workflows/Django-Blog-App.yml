@@ -1,0 +1,20 @@
+name: Django-Blog-App
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: setup docker-compose
+      run: docker-compose up -d
+    - name: run tests
+      run: docker exec backend sh -c "pytest ."
