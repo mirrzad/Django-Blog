@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import Blog, Category
 from .forms import BlogForm
 from django.urls import reverse
@@ -24,6 +26,10 @@ class BlogListView(ListView, LoginRequiredMixin):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context
+
+    @method_decorator(cache_page(60 * 30))
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 
 class BlogDetailView(DetailView, LoginRequiredMixin):
