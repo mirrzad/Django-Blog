@@ -39,8 +39,3 @@ then open the url below and now you can reach the index page of the app.
 * http://127.0.0.1:8000
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License.
